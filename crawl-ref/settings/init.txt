@@ -1,0 +1,641 @@
+##### Crawl Init file ###############################################
+# For descriptions of all options, as well as some more in-depth information
+# on setting them, consult the file
+#    options_guide.txt
+# in your /docs directory. If you can't find it, the file is also available
+# online at:
+# https://github.com/crawl/crawl/blob/master/crawl-ref/docs/options_guide.txt
+#
+# Crawl uses the first file of the following list as its option file:
+#  * init.txt in the -rcdir directory (if specified)
+#  * .crawlrc in the -rcdir directory (if specified)
+#  * init.txt (in the Crawl directory)
+#  * ~/.crawl/init.txt (Unix only)
+#  * ~/.crawlrc (Unix only)
+#  * ~/init.txt (Unix only)
+#  * settings/init.txt (in the Crawl directory)
+
+##### Some basic explanation of option syntax #######################
+# Lines beginning with '#' are comments. The basic syntax is:
+#
+# field = value         or      field.subfield = value
+#
+# Only one specification is allowed per line.
+#
+# The terms are typically case-insensitive except in the fairly obvious
+# cases (the character's name and specifying files or directories when
+# on a system that has case-sensitive filenames).
+#
+# White space is stripped from the beginning and end of the line, as
+# well as immediately before and after the '='. If the option allows
+# multiple comma/semicolon-separated terms (such as
+# autopickup_exceptions), all whitespace around the separator is also
+# trimmed. All other whitespace is left intact.
+#
+# There are three broad types of Crawl options: true/false values (booleans),
+# arbitrary values, and lists of values. The first two types use only the
+# simple =, with later options - which includes your options that are different
+# from the defaults - overriding earlier ones. List options allow using +=, ^=,
+# -=, and = to append, prepend, remove, and reset, respectively. Usually you will
+# want to use += to add to a list option. Lastly, there is := which you can use
+# to create an alias, like so:
+#   ae := autopickup_exceptions
+# From there on, 'ae' will be treated as if it you typed autopickup_exceptions,
+# so you can save time typing it.
+#
+
+##### Other files ###################################################
+# You can include other files from your options file using the 'include'
+# option. Crawl will treat it as if you copied the whole text of that file
+# into your options file in that spot. You can uncomment some of the following
+# lines by removing the beginning '#' to include some of the other files in
+# this folder.
+
+# Some useful, more advanced options, implemented in LUA.
+# include = advanced_optioneering.txt
+
+# Alternative vi bindings for Dvorak users.
+# include = dvorak_command_keys.txt
+
+# Alternative vi bindings for Colemak users.
+# include = colemak_command_keys.txt
+
+# Override the vi movement keys with a non-command.
+# include = no_vi_command_keys.txt
+
+# Turn the shift-vi keys into safe move, instead of run.
+# include = safe_move_shift.txt
+
+##### Ancient versions ##############################################
+# If you're used to the interface of ancient versions of Crawl, you may
+# get back parts of it by uncommenting the following options:
+
+# include                 = 034_command_keys.txt
+
+# And to revert monster glyph and colouring changes:
+
+# include                 = 034_monster_glyphs.txt
+# include                 = 052_monster_glyphs.txt
+# include                 = 060_monster_glyphs.txt
+# include                 = 071_monster_glyphs.txt
+# include                 = 080_monster_glyphs.txt
+# include                 = 0.9_monster_glyphs.txt
+# include                 = 0.12_monster_glyphs.txt
+# include                 = 0.13_monster_glyphs.txt
+# include                 = 0.14_monster_glyphs.txt
+
+restart_after_game = true
+restart_after_save = true
+
+
+#sound += HITPOINT WARNING:Claude_UhOh.wav
+#sound += HITPOINT WARNING:VNearDeath.wav
+sound += HITPOINT WARNING:alert.wav
+sound += sure you want to leave:alert.wav
+sound += command:cancel1.wav
+#sound += You die...:kefka.wav
+#sound += You die...:VDefeat.wav
+#sound += You die...:Defeat.wav
+sound += You die...:gameover.wav
+sound += Goodbye:VDefeat.wav
+sound += There are no items here.:cancel1.wav
+sound += There isn't anything to dissect here.:cancel1.wav
+sound += There isn't anything here!:cancel1.wav
+sound += You can't go down here!:cancel1.wav
+sound += You can't go up here!:cancel1.wav
+#sound += Okay, then.:cancel1.wav
+#^ this sound caused the game to crash...
+sound += Your pack is full:cancel1.wav
+sound += You can't carry that many items:cancel1.wav
+sound += prevents you from:cancel1.wav
+sound += Nothing appears to happen.:vanish2.wav
+sound += No suitable missiles.:cancel1.wav
+sound += you're not good enough:cancel1.wav
+sound += You are already wielding that!:cancel1.wav
+sound += You are already wearing that!:cancel1.wav
+sound += You might want to wield:alert.wav
+
+sound += You have reached level:fanfare.wav
+sound += Welcome back to level:fanfare.wav
+#sound += increase in your attributes:
+#^ skip this sound?
+#sound += Increase (:
+#^ skip this sound?
+sound += You feel stronger:increase.wav
+sound += You feel clever:increase.wav
+sound += You feel agile:increase.wav
+sound += You feel dopey:decrease.wav
+sound += skill increases:increase.wav
+sound += You have gained:increase.wav
+sound += You're starting to get the hang of this magic thing:increase.wav
+
+sound += You are being weighed down:gaze.wav
+sound += You are being crushed by:gaze.wav
+sound += no longer seem quite so:choice1.wav
+
+sound += You drop:cursor1.wav
+sound += You can't unwield:dark1.wav
+
+sound += feeling hungry:decrease.wav
+sound += feeling very hungry:decrease.wav
+sound += starving:alert.wav
+
+sound += You start hacking away.:A_Sword3.WAV
+sound += Butcher:item1.wav
+sound += Eat a chunk:item1.wav
+#^ questions
+sound += not very appetising:dark6.wav
+sound += really hit the spot:absorb2.wav
+sound += delicious:absorb2.wav
+sound += Yummy:absorb2.wav
+sound += This raw flesh tastes great.:093-Attack05.wav
+sound += you're a carnivore.:cancel1.wav
+sound += You're too full to eat anything.:cancel1.wav
+
+sound += sure you want to cancel:item1.wav
+
+sound += blinks:magic1.wav
+
+sound += stares at you:ice08.wav
+
+sound += You may choose your destination:item2.wav
+sound += Blink to where?:item2.wav
+
+#sound += Search for what?:item1.wav
+#^not sure if this should be in or not...
+
+#sound += hear a shout:081-Monster03.wav
+sound += hear a shout:MGSAlert.wav
+###^FOR FUN!!!###
+sound += hear a bark:066-Animal01.wav
+sound += You hear a roar!:085-Monster07.wav
+#sound += hear an angry hiss:
+#sound += hear a screech:
+#sound += hear a bellow:
+sound += slurping noise:148-Support06.wav
+sound += rotting away:148-Support06.wav
+sound += eaten away!:148-Support06.wav
+#sound += ghost wails:
+#sound += screams:
+sound += shouts:MGSAlert.wav
+#sound += whispers:
+#sound += says,:
+#sound += laughs crazily:kefka.wav
+#sound += grins evilly:
+#sound += looks very angry:
+sound += distant roaring:085-Monster07.wav
+sound += feeling hungry:decrease.wav
+sound += There is some shallow water here:water.wav
+sound += That really hurt!:054-Cannon03.wav
+sound += Ouch!:bloodsuck.wav
+
+sound += prays.:038-Switch07.wav
+sound += mumbles some strange prayers:038-Switch07.wav
+sound += mumbles some strange words:038-Switch07.wav
+sound += utters an invocation:038-Switch07.wav
+#^ consider changing this set?
+
+#sound += gestures wildly:
+sound += casts a spell:shot3.wav
+
+sound += The magic dart hits you:bolt05.wav
+sound += The puff of flame hits you:fire1.wav
+sound += You feel a wave of unholy energy pass over you:bolt05.wav
+sound += Pain shoots through your body:bolt06.wav
+sound += seems to speed up:wind03.wav
+#sound += glows brightly for a moment:
+#sound += eyes start to glow:
+#sound += looks stronger:
+sound += You resist:resist.wav
+sound += smites you!:168-Skill12.wav
+#^ consider changing this
+sound += flickers and vanishes!:sleep.wav
+sound += disappears:sleep.wav
+
+
+
+sound += shoots out and hits you!:101-Attack13.wav
+sound += shoots out and hits your shield:097-Attack09.wav
+#^ consider changing?
+sound += shoots out and misses you:062-Swing01.wav
+#^ consider changing?
+sound += avoid triggering:evade2.wav
+
+#sound += A huge blade swings:
+
+sound += Blech:poison.wav
+
+sound += are poisoned:poison.wav
+sound += are more poisoned:poison.wav
+sound += are confused:confuse.wav
+sound += something very wrong with that liquid!:poison.wav
+
+sound += trip and fall:fall1.wav
+sound += A net falls to the ground!:fall1.wav
+sound += A large net falls onto you!:fall1.wav
+sound += You try to slip out of the net.:strike08.wav
+sound += You struggle to escape the net.:strike08.wav
+sound += You break free from the net!:evade2.wav
+
+
+
+sound += feel sick:poison.wav
+sound += feel ill:poison.wav
+#sound += feel your health improve:
+#sound += feel less confused:
+sound += can move again:ice05.wav
+
+sound += You are healed:heal4.wav
+sound += feel better:heal4.wav
+sound += feel much better:heal5.wav
+#^ consider changing this?
+
+sound += loud clanging noise:160-Skill04.wav
+
+
+
+#sound += There is an entrance:
+
+#sound += can't go down:
+#sound += can't go up:
+
+sound += This is a scroll of identify!:heal8.wav
+sound += Identify which item?:heal8.wav
+#^ consider changing this/ doesn't work?
+
+sound += smell decay:fog1.wav
+sound += smell something rotten:fog1.wav
+#sound += equipment suddenly weighs less:
+
+sound += is healed!:heal5.wav
+sound += HP restored.:heal5.wav
+
+#sound += tastes like water:
+sound += fountain dries up:wind1.wav
+
+#sound += Char dumped successfully:
+
+sound += You sense the presence of curses on your possessions.:revive2.wav
+#^ consider changing this
+
+#sound += momentarily confused:
+#sound += has a very clean taste:
+
+sound += You gently float upwards:flash3.wav
+#sound += You're floating high above the floor:
+#sound += You can't reach the floor from up here:
+#sound += You are starting to lose your buoyancy:
+sound += You float gracefully downwards:016-Jump02.wav
+
+
+sound += hear a mighty clap of thunder:bolt01.wav
+
+sound += feel strangely unstable:magic2.wav
+sound += Your surroundings suddenly seem different:teleport1.wav
+sound += Your surroundings seem slightly different:teleport1.wav
+
+#sound += feel your dexterity returning:
+
+sound += feel momentarily disoriented:dark2.wav
+
+sound += You fade into invisibility!:sleep.wav
+#^ consider changing this
+sound += You flicker for a moment:086-Action01.wav
+#^ (consider revive2.wav)
+sound += You flicker back into view:revive3.wav
+
+
+sound += Your brain hurts!:confuse.wav
+
+
+sound += A red film seems to cover your vision as you go berserk!:fire7.wav
+#^ consider changing this (159-Skill03.wav)
+#sound += You feel your anger subside:
+#sound += Your blood rage is quickly leaving you:
+#sound += You are no longer berserk:
+sound += You feel very mighty all of a sudden:170-Skill14.wav
+#^ consider changing this
+sound += You suddenly lose the ability to move:dark5.wav
+sound += You feel a little less mighty now:earth02.wav
+#^ consider changing this
+sound += You feel yourself speed up:wind03.wav
+#sound += Your extra speed is starting to run out:wind03.wav
+sound += You feel yourself slow down:earth02.wav
+sound += feel rather sluggish:earth02.wav
+sound += You feel refreshed:heal3.wav
+#^ consider changing this
+
+sound += glows black for:dark1.wav
+sound += glows green for:105-Heal01.wav
+# (consider: 146-Support04.wav)
+sound += glows red for:105-Heal01.wav
+# (consider: 146-Support04.wav)
+sound += You feel as if something is helping you:087-Action02.wav
+#^ consider changing these positive ones...
+
+sound += This is a scroll of acquirement!:holy6.wav
+sound += Something appears at your feet!:gong.wav
+
+sound += You feel resistant to magic:revive1.wav
+
+sound += Do you wish to join this religion?:item1.wav
+sound += shoves you:bump1.wav
+
+#sound += The scroll reassembles itself in your hand!:
+
+#sound += You feel troubled:
+
+sound += evaporates:holy9.wav
+sound += You offer a prayer:135-Light01.wav
+sound += Your prayer is over:fire2.wav
+#sound += accepts your offering:
+#^ consider leaving this out?
+sound += burst of flame.:119-Fire03.wav
+sound += accepts your kill:119-Fire03.wav
+sound += accepts your offering:119-Fire03.wav
+sound += The book bursts into flames.:119-Fire03.wav
+sound += You can no longer:cancel2.wav
+
+sound += explodes:explode5.wav
+
+sound += croak:070-Animal05.wav
+
+sound += glows with a cold blue light!:ice06.wav
+sound += stops glowing:ice04.wav
+#^consider changing this
+
+sound += sticks to your:flash2.wav
+sound += stuck to you:dark1.wav
+sound += feels deathly cold.:flash2.wav
+
+#sound += Type letter to buy item,:shopdoor.wav
+#^ shop sound so far cause game to crash!
+
+sound += You failed to disarm:042-Knock03.wav
+sound += You have disarmed:open2.wav
+#^ consider changing this
+
+sound += You hear the tinkle of a tiny bell.:holy5.wav
+
+sound += fails to defend:096-Attack08.wav
+#^ consider changing this
+sound += momentarily off-guard:096-Attack08.wav
+#^ consider changing this
+sound += from a blind spot:096-Attack08.wav
+
+sound += is healed!:heal4.wav
+
+#sound += You feel a sudden desire to kill:
+#^ slaying weapon wielded
+
+sound += You sense an unholy aura.:139-Darkness02.wav
+#^ draining weapon wielded
+
+#sound += You feel a brief urge to hack something to bits.:
+#^amulet of rage
+
+#sound += You feel buoyant.:
+
+#sound += Use which ability?:
+sound += into the Abyss!:abyss.wav
+
+
+#sound += Your body shudders with the violent release of wild energies!:
+
+sound += You mutate.:144-Support02.wav
+#^ consider changing this
+# (consider: 058-Wrong02.wav, 113-Remedy01.wav)
+
+sound += looks frightened!:flee.wav
+
+#sound += Your hands tingle!:
+
+#sound += You feel resistant to fire.:
+
+#sound += You enter the shallow water.:
+
+#sound += Moving in this stuff is going to be slow.:
+
+#sound += Splash!:
+
+#sound += The acid burns!:
+
+
+
+### CARD SOUNDS ###
+#sound += The picture comes to life!:
+#sound += It is blank.:
+#sound += The deck of cards disppears in a puff of smoke.:
+
+#sound += You hear a distant slurping noise.:
+
+sound += disappears in a puff of smoke!:pop.wav
+
+sound += You miscast the spell.:battle2.wav
+
+#sound += A beastly little devil appears:
+
+#sound += is outlined in light.:
+
+sound += begins to drip with poison!:148-Support06.wav
+sound += stops dripping with poison.:138-Darkness01.wav
+
+sound += You found a secret door!:zeldasecret.wav
+
+#sound += You experience a momentary feeling of inescapable doom!:dark5.wav
+
+sound += You hear the crackle of electricity.:paralyze1.wav
+#^consider changing this
+sound += stops crackling.:paralyze1.wav
+sound += There is a sudden explosion of sparks!:123-Thunder01.wav
+
+sound += You can't use spell magic!:cancel1.wav
+sound += You don't know any spells.:cancel1.wav
+
+sound += The dead are walking!:083-Monster05.wav
+
+#sound += You slash:
+
+#sound += is poisoned:poison.wav
+#^ kinda glitchy in SOUP...
+
+#sound += The dust glows:
+sound += aware of your surroundings:146-Support04.wav
+sound += freezes and shatters:shatter.wav
+
+#sound += hear an angry buzzing noise:
+
+sound += That's too large for you to wield.:cancel1.wav
+
+sound += It softly glows with a divine radiance!:cancel1.wav
+
+#sound += glows brilliant gold for a moment.:
+sound += appears to be blank.:cancel2.wav
+
+
+#sound += You are wielding:
+#^ auto id item sound
+
+sound += finish taking off:knock.wav
+sound += finish putting on:knock.wav
+
+sound += Done exploring:punch7.wav
+sound += Done searching:punch7.wav
+#sound += Found:sword1.wav
+sound += Found:046-Book01.wav
+#sound += Found:Precis_Lucky.wav
+###^FOR FUN!!!###
+sound += can't reach some places:fog1.wav
+sound += comes into view:fog1.wav
+#sound += comes into view:Claude_TheEnemy.wav
+###^FOR FUN!!!###
+sound += Not with:cancel1.wav
+
+sound += comes up the stairs:footstep.wav
+sound += comes down the stairs:footstep.wav
+
+#sound += limits the effectiveness of this weapon.:
+
+#sound += You feel perceptive.:
+sound += You are engulfed:breath.wav
+
+#sound += You feel magical!:
+
+sound += feel quick on your feet:wind03.wav
+
+sound += A huge blade swings just past you!:065-Swing04.wav
+
+
+sound += Oh no! You have blundered into a Zot trap!:teleport2.wav
+
+sound += You feel extremely strange.:Damage.wav
+
+
+
+
+
+#########################################
+# ENEMY HITTING YOU SOUNDS TESTING AREA #
+#########################################
+
+#sound += misses you:miss.wav
+#sound += hits you but doesn't do any damage:104-Attack16.wav
+#sound += hits:damage1.wav
+
+#########################################
+# ENEMY HITTING YOU SOUNDS TESTING AREA #
+#########################################
+
+#######
+####### LOW PRIORITY SECTION!!!
+#######
+
+sound += do no damage:104-Attack16.wav
+sound += You hit:damage1.wav
+sound += hits the:damage1.wav
+sound += You freeze:121-Ice02.wav
+sound += You puncture:098-Attack10.wav
+#^ consider changing this
+#sound += You sock:
+#sound += convulses!:
+sound += You miss:miss.wav
+sound += miss the:miss.wav
+sound += armour prevents:buzzer1.wav
+sound += fumble your attack:buzzer1.wav
+#^ consider changing this
+sound += You kill:kill.wav
+sound += dies:kill.wav
+sound += You destroy:wind11.wav
+sound += is destroyed:wind11.wav
+sound += swing at nothing:strike10.wav
+sound += looks ill.:poison.wav
+sound += looks more healthy.:heal4.wav
+
+sound += throw a:wind07.wav
+#sound += throws a:wind07.wav
+sound += shoot a:wind07.wav
+#sound += shoots a:wind07.wav
+
+sound += gold piece:coins.wav
+
+sound += climb upwards:footstep.wav
+sound += climb downwards:footstep.wav
+sound += creaks loudly:026-Door03.wav
+sound += open the door:024-Door01.wav
+sound += close the door:close2.wav
+sound += slams shut:close2.wav
+
+sound += an angry buzzing noise:theswarm.wav
+
+### these following sounds are blank so that no sound will play when the event happens
+
+sound += Firing::
+sound += Aim:sword1.wav
+sound += It is poisoned.:
+sound += She is poisoned.:
+sound += He is poisoned.:
+
+sound +=  - :001-System01.wav
+#^ If this is left in some sounds that play when you equip a magic weapon get overridden...
+
+sound += is poisoned:poison.wav
+sound += seems to slow down:earth02.wav
+sound += looks even sicker.:poison.wav
+
+
+
+#MONSTER SPEECH TESTING
+
+#Sigmund
+sound += Burn to ashes!:SO2_3371.wav
+sound += ERUPTION!:SO2_3212.wav
+
+
+#Jessica
+sound += Behind??:SO2_3178.wav
+sound += Get ready for this!:SO2_2222.wav
+sound += I can't forgive you...:SO2_2224.wav
+sound += You're too weak.:SO2_3419.wav
+
+#Terence (normal fighter?)
+sound += Let's go.:SO2_3150.wav
+sound += What?:SO2_3154.wav
+sound += When did you..?:SO2_3155.wav
+sound += Rest in peace.:SO2_3433.wav
+
+
+#Ijyb
+sound += DIE!!:SO2_0833.wav
+sound += YEAGHH!!:SO2_0832.wav
+
+#player ghost
+sound += tHaT iS uSeLeSs.:SO2_3314.wav
+sound += tHaTs UsElEsS.:SO2_3331.wav
+sound += sWaLlOw AlL tHe WiCkEd PeOpLe.:SO2_3365.wav
+sound += sLeEp EtErNaLlY.:SO2_3377.wav
+
+
+#just a bat
+sound += annoyingly:attack2.wav
+
+
+
+#Kobold(any) (NOT WORKING UNTIL NEW VERSION OF STONE SOUP)
+#sound += HELP!!:SO2_3486.wav
+#sound += ha ha!:SO2_3565.wav
+#sound += Get them!:SO2_0173.wav
+#sound += Word of death!:SO2_0181.wav
+
+##################################################################
+##################################################################
+##################################################################
+##################################################################
+##################################################################
+##################################################################
+
+##################################################################
+##################################################################
+##################################################################
+##################################################################
+##################################################################
+##################################################################

@@ -1,0 +1,92 @@
+/**
+ * @file
+ * @brief Functions related to special abilities.
+**/
+
+#ifndef ABLSHOW_H
+#define ABLSHOW_H
+
+#include <string>
+#include <vector>
+
+#include "enum.h"
+
+struct generic_cost
+{
+    int base, add, rolls;
+
+    generic_cost(int num)
+        : base(num), add(num == 0 ? 0 : (num + 1) / 2 + 1), rolls(1)
+    {
+    }
+    generic_cost(int num, int _add, int _rolls = 1)
+        : base(num), add(_add), rolls(_rolls)
+    {
+    }
+    static generic_cost fixed(int fixed)
+    {
+        return generic_cost(fixed, 0, 1);
+    }
+    static generic_cost range(int low, int high, int _rolls = 1)
+    {
+        return generic_cost(low, high - low + 1, _rolls);
+    }
+
+    int cost() const PURE;
+
+    operator bool () const { return base > 0 || add > 0; }
+};
+
+struct scaling_cost
+{
+    int value;
+
+    scaling_cost(int permille) : value(permille) {}
+
+    static scaling_cost fixed(int fixed)
+    {
+        return scaling_cost(-fixed);
+    }
+
+    int cost(int max) const;
+
+    operator bool () const { return value != 0; }
+};
+
+struct talent
+{
+    ability_type which;
+    int hotkey;
+    int fail;
+    bool is_invocation;
+};
+
+int get_gold_cost(ability_type ability);
+const string make_cost_description(ability_type ability);
+unsigned int ability_mp_cost(ability_type abil);
+talent get_talent(ability_type ability, bool check_confused);
+const char* ability_name(ability_type ability);
+vector<const char*> get_ability_names();
+string get_ability_desc(const ability_type ability);
+int choose_ability_menu(const vector<talent>& talents);
+string describe_talent(const talent& tal);
+
+void no_ability_msg();
+bool activate_ability();
+bool check_ability_possible(const ability_type ability, bool hungerCheck = true,
+                            bool quiet = false);
+bool activate_talent(const talent& tal);
+vector<talent> your_talents(bool check_confused, bool include_unusable = false);
+bool string_matches_ability_name(const string& key);
+ability_type ability_by_name(const string &name);
+string print_abilities();
+ability_type fixup_ability(ability_type ability);
+
+int find_ability_slot(ability_type abil, char firstletter = 'f');
+int auto_assign_ability_slot(int slot);
+vector<ability_type> get_god_abilities(bool ignore_silence = true,
+                                       bool ignore_piety = true,
+                                       bool ignore_penance = true);
+void swap_ability_slots(int index1, int index2, bool silent = false);
+
+#endif
