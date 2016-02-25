@@ -6,9 +6,9 @@ Ths iOS project is located at crawl-ref/source/iOS-project/
 
 Please execute following before compiling:
 
-git submodule init
+    git submodule init
 
-git submodule update
+    git submodule update
 
 
 [![Build Status](https://travis-ci.org/crawl/crawl.svg?branch=master)](https://travis-ci.org/crawl/crawl)
