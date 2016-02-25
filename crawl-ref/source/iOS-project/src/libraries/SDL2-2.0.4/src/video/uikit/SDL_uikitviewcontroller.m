@@ -1460,7 +1460,7 @@
         //Using Block
         button = [alert addButton:@"Rate app" actionBlock:^(void) {
             NSLog(@"Rate app");
-            int myAppID = APPID;
+            int myAppID = 12345;
             NSString* url = [NSString stringWithFormat: @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%d", myAppID];
             [[UIApplication sharedApplication] openURL: [NSURL URLWithString: url]];
         }];

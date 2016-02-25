@@ -3101,6 +3101,7 @@
 					"../libraries/SDL2_image-2.0.0",
 					"../libraries/SDL2_mixer-2.0.0",
 					"../libraries/freetype2-ios/include",
+					../,
 				);
 				INFOPLIST_FILE = crawl/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -3123,6 +3124,7 @@
 					"../libraries/SDL2_image-2.0.0",
 					"../libraries/SDL2_mixer-2.0.0",
 					"../libraries/freetype2-ios/include",
+					../,
 				);
 				INFOPLIST_FILE = crawl/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
