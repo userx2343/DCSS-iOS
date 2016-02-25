@@ -1,4 +1,4 @@
-Note iOS Version:
+Notes for iOS Version:
 The source code is not fully cleaned up, but you should be able to build and run it without problems.
 Some issues are not finished yet, such as the app will quit after finishing tutorial, leaderboards for fastest wins are not implemented yet. But they should be added easily.
 
